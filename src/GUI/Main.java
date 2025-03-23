@@ -1,16 +1,36 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 
+import Shapes.*;
+
 public class Main {
     public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
+    }
+
+    private static void createAndShowGUI() {
+
+        JFrame frame = new JFrame("Editor 3000");
+        frame.setBounds(500, 100, 800, 600);
+        frame.setLayout(new BorderLayout(10,10));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /* bar Panel */
         JPanel barPanel = new JPanel();
         barPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         barPanel.setBackground(Color.gray);
 
-        barPanel.add(getButton("File", "" ));
+        barPanel.add(getButton("File", ""));
         barPanel.add(getButton("Edit",""));
+
+        frame.add(barPanel, BorderLayout.NORTH);
         /* bar Panel */
 
         /* tools Panel */
@@ -24,21 +44,18 @@ public class Main {
         toolsPanel.add(getButton("Com", "res/icon_composition.png"));
         toolsPanel.add(getButton("Rec", "res/icon_rect.png"));
         toolsPanel.add(getButton("Ova", "res/icon_oval.png"));
+
+        frame.add(toolsPanel, BorderLayout.WEST);
         /* tools Panel */
 
-        /* Canvas */
-        JPanel CanvasPanel = new JPanel();
+        /* GUI.Canvas */
+        GUI.Canvas CanvasPanel = new Canvas();
         CanvasPanel.setBackground(Color.GRAY);
-        /* Canvas */
 
-        JFrame frame = new JFrame("Editor 3000");
-        frame.setBounds(500, 100, 800, 600);
-        frame.setLayout(new BorderLayout(10,10));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        CanvasPanel.addShape(new Rect(0,0));
 
-        frame.add(barPanel, BorderLayout.NORTH);
-        frame.add(toolsPanel, BorderLayout.WEST);
         frame.add(CanvasPanel, BorderLayout.CENTER);
+        /* GUI.Canvas */
 
         frame.setVisible(true); // 顯示視窗
     }
