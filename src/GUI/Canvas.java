@@ -2,26 +2,40 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+
+import Modes.Mode;
 import Shapes.Shape;
 
 public class Canvas extends JPanel {
-    private List<Shape> shapes = new ArrayList<Shape>();
+    private static Canvas instance = null;
+    Mode curMode = null;
+    private final List<Shape> shapes = new ArrayList<>();
 
-    public Canvas() {
-        addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                shapes.get(0).moveShape(e.getX(),e.getY());
-                repaint();
-            }
-        });
+    // singleton
+    private Canvas() {
+        setBackground(Color.GRAY);
+    }
+
+    public static Canvas getInstance() {  // 單例模式
+        if (instance == null) {
+            instance = new Canvas();
+        }
+        return instance;
+    }
+
+    public void setMode(Mode mode) {
+        removeMouseListener(curMode);  // accept null
+        removeMouseMotionListener(curMode);
+        curMode = mode;
+        addMouseListener(mode);
+        addMouseMotionListener(mode);
     }
 
     public void addShape(Shape shape) {
         shapes.add(shape);
+        repaint();
     }
 
     @Override

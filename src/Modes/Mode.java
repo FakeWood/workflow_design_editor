@@ -1,8 +1,9 @@
 package Modes;
 
-import java.awt.event.MouseEvent;
+import GUI.Canvas;
 
-abstract public class Mode {
-    public Mode(){};
-    public abstract void update(MouseEvent e);
+import java.awt.event.MouseAdapter;
+
+abstract public class Mode extends MouseAdapter {
+    static Canvas canvas = Canvas.getInstance();
 }
