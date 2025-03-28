@@ -5,13 +5,16 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import Drawables.Link.Link;
+import Drawables.Objs.Obj;
 import Modes.Mode;
 import Drawables.Drawable;
 
 public class Canvas extends JPanel {
     private static Canvas instance = null;
     Mode curMode = null;
-    private final List<Drawable> drawables = new ArrayList<>();
+    private final List<Obj> objs = new ArrayList<>();
+    private final List<Link> links = new ArrayList<>();
 
     // singleton
     private Canvas() {
@@ -33,16 +36,38 @@ public class Canvas extends JPanel {
         addMouseMotionListener(mode);
     }
 
-    public void addShape(Drawable drawable) {
-        drawables.add(drawable);
+    public void addObject(Obj obj) {
+        objs.add(obj);
+        repaint();
+    }
+
+    public Obj findObjHovered(Point mousePos) {
+        for (Obj obj : objs) {
+            if (obj.contain(mousePos)) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    public void addLink(Link link) {
+        links.add(link);
+        repaint();
+    }
+
+    public void removeLink(Link link) {
+        links.remove(link);
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Drawable drawable : drawables) {
-            drawable.draw(g);
+        for (Obj obj : objs) {
+            obj.draw(g);
+        }
+        for (Link link : links) {
+            link.draw(g);
         }
     }
 }

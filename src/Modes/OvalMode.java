@@ -1,6 +1,6 @@
 package Modes;
 
-import Drawables.object.Oval;
+import Drawables.Objs.Oval;
 
 import java.awt.event.MouseEvent;
 
@@ -9,6 +9,6 @@ public class OvalMode extends Mode {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        canvas.addShape(new Oval(e.getX(), e.getY()));
+        canvas.addObject(new Oval(e.getX(), e.getY()));
     }
 }

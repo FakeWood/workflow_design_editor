@@ -8,8 +8,17 @@ abstract public class Link implements Drawable {
     Point startPos;
     Point endPos;
 
-    public Link(int x1, int y1, int x2, int y2) {
-        this.startPos = new Point(x1, y1);
-        this.endPos = new Point(x2, y2);
+    public Link(){};
+    public Link(Point start, Point end) {
+        this.startPos = new Point(start);
+        this.endPos = new Point(end);
+    }
+
+    public void setStart(Point start) {
+        startPos.setLocation(start);
+    }
+
+    public void setEnd(Point end) {
+        endPos.setLocation(end);
     }
 }

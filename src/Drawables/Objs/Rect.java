@@ -1,22 +1,26 @@
-package Drawables.object;
+package Drawables.Objs;
 
 import java.awt.*;
 
-public class Oval extends Object {
+public class Rect extends Obj {
 
-    public Oval(int x, int y) {
+    public Rect(int x, int y) {
         super(x, y);
+        ports.add(new Port(x, y));
         ports.add(new Port(x + width/2, y));
+        ports.add(new Port(x + width, y));
         ports.add(new Port(x, y + height/2));
         ports.add(new Port(x + width, y + height/2));
+        ports.add(new Port(x, y + height));
         ports.add(new Port(x + width/2, y + height));
+        ports.add(new Port(x + width, y + height));
     }
 
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.darkGray);
-        g.fillOval(pos.x, pos.y, width, height);
-        if(selected) {
+        g.fillRect(pos.x, pos.y, width, height);
+        if (selected) {
             for (Port port : ports) {
                 port.draw(g);
             }

@@ -1,6 +1,6 @@
 package Modes;
 
-import Drawables.object.Rect;
+import Drawables.Objs.Rect;
 
 import java.awt.event.MouseEvent;
 
@@ -9,6 +9,6 @@ public class RectMode extends Mode {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        canvas.addShape(new Rect(e.getX(), e.getY()));
+        canvas.addObject(new Rect(e.getX(), e.getY()));
     }
 }

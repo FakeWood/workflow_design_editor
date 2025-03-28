@@ -1,4 +1,4 @@
-package Drawables.object;
+package Drawables.Objs;
 
 import Drawables.Drawable;
 
@@ -11,6 +11,10 @@ public class Port implements Drawable {
 
     public Port(int x, int y) {
         centerPos = new Point(x, y);
+    }
+
+    public Point getCenterPos() {
+        return centerPos.getLocation();
     }
 
     @Override

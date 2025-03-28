@@ -14,6 +14,7 @@ public class ToolPanel {
     private final List<JButton> buttons = new ArrayList<>();
     private final JPanel toolsPanel = new JPanel();
 
+    private final Mode selectMode = new SelectMode();
     private final Mode rectMode = new RectMode();
     private final Mode ovalMode = new OvalMode();
     private final Mode assLinkMode = new AssLinkMode();
@@ -29,15 +30,20 @@ public class ToolPanel {
         JButton bTmp;
 
         bTmp = getButton("Sel", "res/icon_select.png");
-        bTmp.addActionListener(e->canvas.setMode(rectMode));
+        bTmp.addActionListener(e->canvas.setMode(selectMode));
         this.toolsPanel.add(bTmp);
 
         bTmp = getButton("Ass","res/icon_association.png");
-//        bTmp.addActionListener(e->canvas.setMode(Mode));
+        bTmp.addActionListener(e->canvas.setMode(assLinkMode));
         this.toolsPanel.add(bTmp);
 
-        this.toolsPanel.add(getButton("Gen", "res/icon_generalization.png"));
-        this.toolsPanel.add(getButton("Com", "res/icon_composition.png"));
+        bTmp = getButton("Gen", "res/icon_generalization.png");
+        bTmp.addActionListener(e->canvas.setMode(genLinkMode));
+        this.toolsPanel.add(bTmp);
+
+        bTmp = getButton("Com", "res/icon_composition.png");
+        bTmp.addActionListener(e->canvas.setMode(compLinkMode));
+        this.toolsPanel.add(bTmp);
 
         bTmp = getButton("Rec", "res/icon_rect.png");
         bTmp.addActionListener(e->canvas.setMode(rectMode));
