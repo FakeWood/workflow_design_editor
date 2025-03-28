@@ -1,6 +1,6 @@
 package Modes;
 
-import Shapes.Oval;
+import Drawables.object.Oval;
 
 import java.awt.event.MouseEvent;
 

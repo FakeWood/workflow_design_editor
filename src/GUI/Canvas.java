@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Modes.Mode;
-import Shapes.Shape;
+import Drawables.Drawable;
 
 public class Canvas extends JPanel {
     private static Canvas instance = null;
     Mode curMode = null;
-    private final List<Shape> shapes = new ArrayList<>();
+    private final List<Drawable> drawables = new ArrayList<>();
 
     // singleton
     private Canvas() {
@@ -33,16 +33,16 @@ public class Canvas extends JPanel {
         addMouseMotionListener(mode);
     }
 
-    public void addShape(Shape shape) {
-        shapes.add(shape);
+    public void addShape(Drawable drawable) {
+        drawables.add(drawable);
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Shape shape : shapes) {
-            shape.draw(g);
+        for (Drawable drawable : drawables) {
+            drawable.draw(g);
         }
     }
 }

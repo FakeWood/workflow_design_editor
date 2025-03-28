@@ -1,7 +1,6 @@
 package GUI;
 
-import Modes.OvalMode;
-import Modes.RectMode;
+import Modes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,12 +10,17 @@ import java.util.List;
 
 public class ToolPanel {
     private final Canvas canvas = Canvas.getInstance();
-    private final RectMode rectMode = new RectMode();
-    private final OvalMode ovalMode = new OvalMode();
+
     private final List<JButton> buttons = new ArrayList<>();
     private final JPanel toolsPanel = new JPanel();
 
-    public JPanel getToolsPanel(){return this.toolsPanel;}
+    private final Mode rectMode = new RectMode();
+    private final Mode ovalMode = new OvalMode();
+    private final Mode assLinkMode = new AssLinkMode();
+    private final Mode genLinkMode = new GenLinkMode();
+    private final Mode compLinkMode = new CompLinkMode();
+
+    public JPanel getToolsPanel(){ return this.toolsPanel; }
 
     public ToolPanel() {
         this.toolsPanel.setLayout(new GridLayout(6,1));
@@ -25,7 +29,7 @@ public class ToolPanel {
         JButton bTmp;
 
         bTmp = getButton("Sel", "res/icon_select.png");
-//        bTmp.addActionListener(e->canvas.setMode(rectMode));
+        bTmp.addActionListener(e->canvas.setMode(rectMode));
         this.toolsPanel.add(bTmp);
 
         bTmp = getButton("Ass","res/icon_association.png");

@@ -1,6 +1,6 @@
 package Modes;
 
-import Shapes.Rect;
+import Drawables.object.Rect;
 
 import java.awt.event.MouseEvent;
 
