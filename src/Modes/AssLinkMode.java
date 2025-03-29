@@ -1,16 +1,10 @@
 package Modes;
 
 import Drawables.Link.AssLink;
-import Drawables.Objs.Obj;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class AssLinkMode extends Mode{
-    Point startPos;
-    Point endPos;
-    Obj startObj = null;
-    Obj endObj = null;
+public class AssLinkMode extends LinkMode{
     AssLink tmpLink;
 
     @Override
@@ -18,7 +12,7 @@ public class AssLinkMode extends Mode{
         startObj = canvas.findObjHovered(e.getPoint());
         if (startObj == null) return;
 
-        startPos = startObj.findNearestPort(e.getPoint());
+        startPos = startObj.findNearestPort(e.getPoint()).getCenterPos();
         tmpLink = new AssLink(startPos, startPos);
         canvas.addLink(tmpLink);
     }
@@ -29,7 +23,7 @@ public class AssLinkMode extends Mode{
 
         endObj = canvas.findObjHovered(e.getPoint());
         if (endObj != null && endObj != startObj) {
-            endPos = endObj.findNearestPort(e.getPoint());
+            endPos = endObj.findNearestPort(e.getPoint()).getCenterPos();
         } else {
             endPos = e.getPoint();
         }
@@ -47,7 +41,7 @@ public class AssLinkMode extends Mode{
             canvas.removeLink(tmpLink);
         }
         else {
-            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
+            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()).getCenterPos());
         }
 
         tmpLink = null;
@@ -55,8 +49,4 @@ public class AssLinkMode extends Mode{
 
         canvas.repaint();
     }
-
-
-
-
 }

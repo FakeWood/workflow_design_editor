@@ -4,15 +4,16 @@ import java.awt.*;
 
 public class AssLink extends Link{
 
-    Point arrowPos1;
-    Point arrowPos2;
+    Point arrowPos1 = new Point();
+    Point arrowPos2 = new Point();
     int arrowLength = 20;
     double arrowAngle = Math.PI / 5;
 
     public AssLink(Point start, Point end) {
-        super(start, end);
-        arrowPos1 = new Point(end);
-        arrowPos2 = new Point(end);
+        startPos.setLocation(start);
+        endPos.setLocation(end);
+        arrowPos1.setLocation(end);
+        arrowPos2.setLocation(end);
     }
 
     void updateArrow() {
@@ -23,9 +24,13 @@ public class AssLink extends Link{
         arrowPos2.y = endPos.y + (int)(arrowLength * Math.sin(angle - arrowAngle));
     }
 
+    public void setEnd(Point end) {
+        endPos.setLocation(end);
+        updateArrow();
+    }
+
     @Override
     public void draw(Graphics g) {
-        updateArrow();
         g.setColor(Color.BLACK);
         g.drawLine(startPos.x, startPos.y, endPos.x, endPos.y);
         g.drawLine(endPos.x, endPos.y, arrowPos1.x, arrowPos1.y);

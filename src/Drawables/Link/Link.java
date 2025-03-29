@@ -5,20 +5,8 @@ import Drawables.Drawable;
 import java.awt.*;
 
 abstract public class Link implements Drawable {
-    Point startPos;
-    Point endPos;
+    Point startPos = new Point();
+    Point endPos = new Point();
 
-    public Link(){};
-    public Link(Point start, Point end) {
-        this.startPos = new Point(start);
-        this.endPos = new Point(end);
-    }
-
-    public void setStart(Point start) {
-        startPos.setLocation(start);
-    }
-
-    public void setEnd(Point end) {
-        endPos.setLocation(end);
-    }
+    public Link(){}
 }

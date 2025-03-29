@@ -6,10 +6,10 @@ public class Oval extends Obj {
 
     public Oval(int x, int y) {
         super(x, y);
-        ports.add(new Port(x + width/2, y));
-        ports.add(new Port(x, y + height/2));
-        ports.add(new Port(x + width, y + height/2));
-        ports.add(new Port(x + width/2, y + height));
+        ports.add(new Port(x + width/2, y, Port.Side.TOP));
+        ports.add(new Port(x, y + height/2, Port.Side.LEFT));
+        ports.add(new Port(x + width, y + height/2, Port.Side.RIGHT));
+        ports.add(new Port(x + width/2, y + height, Port.Side.BOTTOM));
     }
 
     @Override

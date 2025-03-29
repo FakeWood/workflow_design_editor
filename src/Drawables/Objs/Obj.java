@@ -22,14 +22,14 @@ abstract public class Obj implements Drawable {
                 pos.y <= point.y && point.y <= pos.y + height);
     }
 
-    public Point findNearestPort(Point p) {
-        Point nearestPos = ports.get(0).getCenterPos();
+    public Port findNearestPort(Point p) {
+        Port nearestPos = ports.get(0);
         for (Port port : ports) {
-            if (p.distance(port.getCenterPos()) < p.distance(nearestPos)) {
-                nearestPos.setLocation(port.getCenterPos());
+            if (p.distance(port.getCenterPos()) < p.distance(nearestPos.getCenterPos())) {
+                nearestPos = port;
             }
         }
 
-        return nearestPos.getLocation();
+        return nearestPos;
     }
 }
