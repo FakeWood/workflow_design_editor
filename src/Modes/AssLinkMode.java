@@ -40,6 +40,8 @@ public class AssLinkMode extends Mode{
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (tmpLink == null) return;
+
         endObj = canvas.findObjHovered(e.getPoint());
         if(endObj == null|| endObj == startObj) {
             canvas.removeLink(tmpLink);

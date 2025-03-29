@@ -28,7 +28,6 @@ public class Main {
         /* bar Panel */
 
         /* tools Panel */
-
         frame.add(new ToolPanel().getToolsPanel(), BorderLayout.WEST);
         /* tools Panel */
 
