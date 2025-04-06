@@ -1,4 +1,54 @@
 package Modes;
 
-public class CompLinkMode extends Mode{
+import Drawables.Link.CompLink;
+
+import java.awt.event.MouseEvent;
+
+public class CompLinkMode extends LinkMode{
+    CompLink tmpLink;
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        startObj = canvas.findObjHovered(e.getPoint());
+        if (startObj == null) return;
+
+        tmpLink = new CompLink();
+        tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
+        tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
+        canvas.addLink(tmpLink);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if(startObj == null || tmpLink == null) return;
+
+        endObj = canvas.findObjHovered(e.getPoint());
+        if (endObj != null && endObj != startObj) {
+            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
+        } else {
+
+            tmpLink.setEnd(e.getPoint());
+        }
+
+        canvas.repaint();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (tmpLink == null) return;
+
+        endObj = canvas.findObjHovered(e.getPoint());
+        if(endObj == null|| endObj == startObj) {
+            canvas.removeLink(tmpLink);
+        }
+        else {
+            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
+        }
+
+        tmpLink = null;
+        startObj = null;
+
+        canvas.repaint();
+    }
 }
+
