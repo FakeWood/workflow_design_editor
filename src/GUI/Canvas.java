@@ -5,14 +5,15 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import Drawables.Drawable;
 import Drawables.Link.Link;
 import Drawables.Objs.Obj;
 import Modes.Mode;
-import Drawables.Drawable;
 
 public class Canvas extends JPanel {
     private static Canvas instance = null;
     Mode curMode = null;
+    private final List<Drawable> drawables = new ArrayList<>();
     private final List<Obj> objs = new ArrayList<>();
     private final List<Link> links = new ArrayList<>();
 
@@ -41,6 +42,16 @@ public class Canvas extends JPanel {
         repaint();
     }
 
+    public void addDrawable(Drawable drawable) {
+        drawables.add(drawable);
+        repaint();
+    }
+
+    public void removeDrawable(Drawable drawable) {
+        drawables.remove(drawable);
+        repaint();
+    }
+
     public Obj findObjHovered(Point mousePos) {
         for (Obj obj : objs) {
             if (obj.contain(mousePos)) {
@@ -48,6 +59,25 @@ public class Canvas extends JPanel {
             }
         }
         return null;
+    }
+
+    public List<Obj> findObjCovered(Point startPos, Point endPos) {
+        List<Obj> objsCovered = new ArrayList<>();
+        Point xy = new Point();
+        Point wh = new Point();
+        Point minPos = new Point(Math.min(startPos.x, endPos.x), Math.min(startPos.y, endPos.y));
+        Point maxPos = new Point(Math.max(startPos.x, endPos.x), Math.max(startPos.y, endPos.y));
+
+        for (Obj obj : objs) {
+            xy.setLocation(obj.getPos());
+            wh.setLocation(obj.getDimension());
+            if (xy.x > minPos.x && xy.x + wh.x < maxPos.x &&
+                xy.y > minPos.y && xy.y + wh.y < maxPos.y) {
+                objsCovered.add(obj);
+            }
+        }
+
+        return objsCovered;
     }
 
     public void addLink(Link link) {
@@ -60,6 +90,18 @@ public class Canvas extends JPanel {
         repaint();
     }
 
+    public void selectObjs(List<Obj> selectedObjs) {
+        for (Obj obj : objs) {
+            if (selectedObjs.contains(obj)) {
+                obj.select();
+            } else {
+                obj.deselect();
+            }
+
+        }
+        repaint();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -68,6 +110,9 @@ public class Canvas extends JPanel {
         }
         for (Link link : links) {
             link.draw(g);
+        }
+        for (Drawable drawable : drawables) {
+            drawable.draw(g);
         }
     }
 }

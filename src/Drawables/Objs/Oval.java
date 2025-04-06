@@ -16,10 +16,6 @@ public class Oval extends Obj {
     public void draw(Graphics g) {
         g.setColor(Color.darkGray);
         g.fillOval(pos.x, pos.y, width, height);
-        if(selected) {
-            for (Port port : ports) {
-                port.draw(g);
-            }
-        }
+        super.draw(g);
     }
 }

@@ -18,7 +18,7 @@ abstract public class Obj implements Drawable {
     }
 
     public boolean contain(Point point) {
-        return (pos.x <= point.x && point.x<= pos.x + width &&
+        return (pos.x <= point.x && point.x <= pos.x + width &&
                 pos.y <= point.y && point.y <= pos.y + height);
     }
 
@@ -31,5 +31,30 @@ abstract public class Obj implements Drawable {
         }
 
         return nearestPos;
+    }
+
+    public void select() {
+        selected = true;
+    }
+
+    public void deselect() {
+        selected = false;
+    }
+
+    public Point getPos() {
+        return pos.getLocation();
+    }
+
+    public Point getDimension() {
+        return new Point(width, height);
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        if(selected) {
+            for (Port port : ports) {
+                port.draw(g);
+            }
+        }
     }
 }
