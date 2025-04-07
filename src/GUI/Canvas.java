@@ -46,6 +46,11 @@ public class Canvas extends JPanel {
         repaint();
     }
 
+    public void removeObject(Obj obj) {
+        objs.remove(obj);
+        repaint();
+    }
+
     public void addDrawable(Drawable drawable) {
         drawables.add(drawable);
         repaint();
