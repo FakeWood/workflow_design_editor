@@ -7,6 +7,7 @@ import java.util.List;
 
 import Drawables.Drawable;
 import Drawables.Link.Link;
+import Drawables.Objs.CompObj;
 import Drawables.Objs.Obj;
 import Modes.Mode;
 
@@ -30,6 +31,9 @@ public class Canvas extends JPanel {
     }
 
     public void setMode(Mode mode) {
+        if(curMode != null) {
+            curMode.exit();
+        }
         removeMouseListener(curMode);  // accept null
         removeMouseMotionListener(curMode);
         curMode = mode;
@@ -52,8 +56,14 @@ public class Canvas extends JPanel {
         repaint();
     }
 
-    public Obj findObjHovered(Point mousePos) {
-        for (Obj obj : objs) {
+    public Obj findObjHovered(Point mousePos, boolean skipCompObjs) {
+        for (int i = objs.size() - 1; i >= 0; i--) {
+            Obj obj = objs.get(i);
+
+            if (skipCompObjs && obj instanceof CompObj) {
+                continue;
+            }
+
             if (obj.contain(mousePos)) {
                 return obj;
             }
@@ -68,7 +78,8 @@ public class Canvas extends JPanel {
         Point minPos = new Point(Math.min(startPos.x, endPos.x), Math.min(startPos.y, endPos.y));
         Point maxPos = new Point(Math.max(startPos.x, endPos.x), Math.max(startPos.y, endPos.y));
 
-        for (Obj obj : objs) {
+        for (int i = objs.size() - 1; i >= 0; i--) {
+            Obj obj = objs.get(i);
             xy.setLocation(obj.getPos());
             wh.setLocation(obj.getDimension());
             if (xy.x > minPos.x && xy.x + wh.x < maxPos.x &&
@@ -91,15 +102,28 @@ public class Canvas extends JPanel {
     }
 
     public void selectObjs(List<Obj> selectedObjs) {
-        for (Obj obj : objs) {
+        for(Obj obj : objs) {
+            obj.deselect();
+        }
+
+        for (int i = objs.size() - 1; i >= 0; i--) {
+            Obj obj = objs.get(i);
             if (selectedObjs.contains(obj)) {
                 obj.select();
-            } else {
-                obj.deselect();
-            }
-
+            } // do not deselect here. Or compObj component will be deselected.
         }
+
         repaint();
+    }
+
+    public List<Obj> getSelectedObjs() {
+        List<Obj> selectedObjs = new ArrayList<>();
+        for (Obj obj : objs) {
+            if (obj.isSelected()) {
+                selectedObjs.add(obj);
+            }
+        }
+        return selectedObjs;
     }
 
     @Override

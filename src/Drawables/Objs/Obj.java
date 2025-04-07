@@ -8,13 +8,15 @@ import java.util.List;
 
 abstract public class Obj implements Drawable {
     boolean selected = false;
-    Point pos;
+    Point pos = new Point();
     int width = 50;
     int height = 50;
     List<Port> ports = new ArrayList<>();
 
+    public Obj(){}
+
     public Obj(int x, int y){
-        pos = new Point(x,y);
+        pos.setLocation(x,y);
     }
 
     public boolean contain(Point point) {
@@ -39,6 +41,10 @@ abstract public class Obj implements Drawable {
 
     public void deselect() {
         selected = false;
+    }
+
+    public boolean isSelected() {
+        return selected;
     }
 
     public Point getPos() {

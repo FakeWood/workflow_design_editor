@@ -9,7 +9,7 @@ public class AssLinkMode extends LinkMode{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        startObj = canvas.findObjHovered(e.getPoint());
+        startObj = canvas.findObjHovered(e.getPoint(), true);
         if (startObj == null) return;
 
         startPos = startObj.findNearestPort(e.getPoint()).getCenterPos();
@@ -21,13 +21,12 @@ public class AssLinkMode extends LinkMode{
     public void mouseDragged(MouseEvent e) {
         if(startObj == null || tmpLink == null) return;
 
-        endObj = canvas.findObjHovered(e.getPoint());
-        if (endObj != null && endObj != startObj) {
-            endPos = endObj.findNearestPort(e.getPoint()).getCenterPos();
+        endObj = canvas.findObjHovered(e.getPoint(), true);
+        if (endObj == null || endObj == startObj) {
+            tmpLink.setEnd(e.getPoint());
         } else {
-            endPos = e.getPoint();
+            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
         }
-        tmpLink.setEnd(endPos);
 
         canvas.repaint();
     }
@@ -36,7 +35,7 @@ public class AssLinkMode extends LinkMode{
     public void mouseReleased(MouseEvent e) {
         if (tmpLink == null) return;
 
-        endObj = canvas.findObjHovered(e.getPoint());
+        endObj = canvas.findObjHovered(e.getPoint(), true);
         if(endObj == null|| endObj == startObj) {
             canvas.removeLink(tmpLink);
         }

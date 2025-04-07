@@ -9,7 +9,7 @@ public class GenLinkMode extends LinkMode{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        startObj = canvas.findObjHovered(e.getPoint());
+        startObj = canvas.findObjHovered(e.getPoint(), true);
         if (startObj == null) return;
 
         tmpLink = new GenLink();
@@ -22,12 +22,11 @@ public class GenLinkMode extends LinkMode{
     public void mouseDragged(MouseEvent e) {
         if(startObj == null || tmpLink == null) return;
 
-        endObj = canvas.findObjHovered(e.getPoint());
-        if (endObj != null && endObj != startObj) {
-            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
-        } else {
-
+        endObj = canvas.findObjHovered(e.getPoint(), true);
+        if (endObj == null || endObj == startObj) {
             tmpLink.setEnd(e.getPoint());
+        } else {
+            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
         }
 
         canvas.repaint();
@@ -37,8 +36,8 @@ public class GenLinkMode extends LinkMode{
     public void mouseReleased(MouseEvent e) {
         if (tmpLink == null) return;
 
-        endObj = canvas.findObjHovered(e.getPoint());
-        if(endObj == null|| endObj == startObj) {
+        endObj = canvas.findObjHovered(e.getPoint(), true);
+        if(endObj == null || endObj == startObj) {
             canvas.removeLink(tmpLink);
         }
         else {

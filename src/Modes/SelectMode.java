@@ -32,7 +32,7 @@ public class SelectMode extends Mode{
 
         // click
         if (endPos.equals(startPos)) {
-            selectedObjs.add(canvas.findObjHovered(e.getPoint()));
+            selectedObjs.add(canvas.findObjHovered(e.getPoint(), false));
         // drag
         } else {
             selectedObjs = canvas.findObjCovered(startPos, endPos);
@@ -50,5 +50,12 @@ public class SelectMode extends Mode{
         range.setEndPos(maxPos);
 
         canvas.repaint();
+    }
+
+    @Override
+    public void exit() {
+        super.exit();
+        selectedObjs.clear();
+        canvas.selectObjs(selectedObjs);
     }
 }

@@ -9,4 +9,5 @@ abstract public class Link implements Drawable {
     Point endPos = new Point();
 
     public Link(){}
+
 }

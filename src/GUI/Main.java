@@ -16,16 +16,9 @@ public class Main {
         frame.setLayout(new BorderLayout(10,10));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        /* bar Panel */
-        JPanel barPanel = new JPanel();
-        barPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        barPanel.setBackground(Color.gray);
-
-//        barPanel.add(getButton("File", ""));
-//        barPanel.add(getButton("Edit",""));
-
-        frame.add(barPanel, BorderLayout.NORTH);
-        /* bar Panel */
+        /* menu bar */
+        frame.setJMenuBar(new MenuBar().getMenuBar());
+        /* menu bar */
 
         /* tools Panel */
         frame.add(new ToolPanel().getToolsPanel(), BorderLayout.WEST);

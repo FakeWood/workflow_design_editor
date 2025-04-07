@@ -1,5 +1,7 @@
 package Drawables.Link;
 
+import Drawables.Objs.Port;
+
 import java.awt.*;
 
 public class AssLink extends Link{
@@ -26,6 +28,11 @@ public class AssLink extends Link{
 
     public void setEnd(Point end) {
         endPos.setLocation(end);
+        updateArrow();
+    }
+
+    public void setEnd(Port end) {
+        endPos.setLocation(end.getCenterPos());
         updateArrow();
     }
 
