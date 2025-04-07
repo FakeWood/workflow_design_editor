@@ -27,6 +27,10 @@ public class Port implements Drawable {
         return side;
     }
 
+    public void move(int dx, int dy) {
+        centerPos.translate(dx, dy);
+    }
+
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);

@@ -12,8 +12,9 @@ public class AssLinkMode extends LinkMode{
         startObj = canvas.findObjHovered(e.getPoint(), true);
         if (startObj == null) return;
 
-        startPos = startObj.findNearestPort(e.getPoint()).getCenterPos();
-        tmpLink = new AssLink(startPos, startPos);
+        tmpLink = new AssLink();
+        tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
+        tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
         canvas.addLink(tmpLink);
     }
 

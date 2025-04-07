@@ -11,12 +11,7 @@ public class AssLink extends Link{
     int arrowLength = 20;
     double arrowAngle = Math.PI / 5;
 
-    public AssLink(Point start, Point end) {
-        startPos.setLocation(start);
-        endPos.setLocation(end);
-        arrowPos1.setLocation(end);
-        arrowPos2.setLocation(end);
-    }
+    public AssLink() {}
 
     void updateArrow() {
         double angle = Math.atan2(startPos.y - endPos.y, startPos.x - endPos.x);
@@ -26,13 +21,28 @@ public class AssLink extends Link{
         arrowPos2.y = endPos.y + (int)(arrowLength * Math.sin(angle - arrowAngle));
     }
 
+    public void setStart(Port port) {
+        startPort = port;
+    }
+
     public void setEnd(Point end) {
         endPos.setLocation(end);
         updateArrow();
     }
 
     public void setEnd(Port end) {
-        endPos.setLocation(end.getCenterPos());
+        endPort = end;
+        updatePorts();
+    }
+
+    @Override
+    public void updatePorts() {
+        if (startPort != null) {
+            startPos.setLocation(startPort.getCenterPos());
+        }
+        if (endPort != null) {
+            endPos.setLocation(endPort.getCenterPos());
+        }
         updateArrow();
     }
 

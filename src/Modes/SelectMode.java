@@ -13,43 +13,59 @@ public class SelectMode extends Mode{
     Point startPos = new Point();
     Point endPos = new Point();
     RectBound range = new RectBound();
+    boolean onObj = false;
 
     @Override
     public void mousePressed(MouseEvent e) {
-        selectedObjs.clear();
-        canvas.selectObjs(selectedObjs);
         startPos.setLocation(e.getPoint());
+        selectedObjs.clear();
+        Obj pressedObj = canvas.findObjHovered(e.getPoint(), false);
 
-        range.setStartPos(startPos);
-        range.setEndPos(startPos);
+        // click on nothing, then draw select box
+        if (pressedObj == null) {
+            onObj = false;
 
-        canvas.addDrawable(range);
+            range.setStartPos(startPos);
+            range.setEndPos(startPos);
+            canvas.addDrawable(range);
+        }
+        // click on obj, the move
+        else {
+            onObj = true;
+            selectedObjs.add(pressedObj);
+            canvas.selectObjs(selectedObjs);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         endPos.setLocation(e.getPoint());
 
-        // click
-        if (endPos.equals(startPos)) {
-            selectedObjs.add(canvas.findObjHovered(e.getPoint(), false));
-        // drag
+        // clicked on obj
+        if(onObj){
+            selectedObjs.get(0).move(e.getX() - startPos.x, e.getY() - startPos.y);
+            canvas.updateLink();
+            onObj = false;
+        // clicked on nothing
         } else {
-            selectedObjs = canvas.findObjCovered(startPos, endPos);
+            selectedObjs = canvas.findObjsCovered(startPos, endPos);
+            canvas.selectObjs(selectedObjs);
+            canvas.removeDrawable(range);
         }
 
-        canvas.selectObjs(selectedObjs);
-        canvas.removeDrawable(range);
+        canvas.repaint();
     }
+
     @Override
     public void mouseDragged(MouseEvent e) {
-        Point minPos = new Point(Math.min(startPos.x, e.getX()), Math.min(startPos.y, e.getY()));
-        Point maxPos = new Point(Math.max(startPos.x, e.getX()), Math.max(startPos.y, e.getY()));
+        if (!onObj){
+            Point minPos = new Point(Math.min(startPos.x, e.getX()), Math.min(startPos.y, e.getY()));
+            Point maxPos = new Point(Math.max(startPos.x, e.getX()), Math.max(startPos.y, e.getY()));
 
-        range.setStartPos(minPos);
-        range.setEndPos(maxPos);
-
-        canvas.repaint();
+            range.setStartPos(minPos);
+            range.setEndPos(maxPos);
+            canvas.repaint();
+        }
     }
 
     @Override

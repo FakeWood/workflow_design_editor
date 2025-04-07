@@ -18,5 +18,4 @@ public class RectBound implements Drawable {
     public void draw(Graphics g) {
         g.drawRect(startPos.x, startPos.y, endPos.x - startPos.x, endPos.y - startPos.y);
     }
-
 }

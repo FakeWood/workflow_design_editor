@@ -55,6 +55,13 @@ abstract public class Obj implements Drawable {
         return new Point(width, height);
     }
 
+    public void move(int dx, int dy) {
+        pos.translate(dx, dy);
+        for (Port port : ports) {
+            port.move(dx, dy);
+        }
+    }
+
     @Override
     public void draw(Graphics g) {
         if(selected) {

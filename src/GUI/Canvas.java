@@ -76,7 +76,7 @@ public class Canvas extends JPanel {
         return null;
     }
 
-    public List<Obj> findObjCovered(Point startPos, Point endPos) {
+    public List<Obj> findObjsCovered(Point startPos, Point endPos) {
         List<Obj> objsCovered = new ArrayList<>();
         Point xy = new Point();
         Point wh = new Point();
@@ -104,6 +104,12 @@ public class Canvas extends JPanel {
     public void removeLink(Link link) {
         links.remove(link);
         repaint();
+    }
+
+    public void updateLink() {
+        for (Link link : links) {
+            link.updatePorts();
+        }
     }
 
     public void selectObjs(List<Obj> selectedObjs) {

@@ -39,6 +39,14 @@ public class CompObj extends Obj{
     }
 
     @Override
+    public void move(int dx, int dy) {
+        super.move(dx, dy);
+        for (Obj obj : objs) {
+            obj.move(dx, dy);
+        }
+    }
+
+    @Override
     public void draw(Graphics g) {  // Does not draw objs to maintain the layer order
         updateBound();
         if (this.selected) {

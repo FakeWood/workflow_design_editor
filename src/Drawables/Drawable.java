@@ -3,5 +3,6 @@ package Drawables;
 import java.awt.*;
 
 public interface Drawable {
-    abstract public void draw(Graphics g);
+    void draw(Graphics g);
 }
+

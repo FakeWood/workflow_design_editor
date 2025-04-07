@@ -18,14 +18,6 @@ public class CompLink extends Link{
 
     public CompLink() {}
 
-    public CompLink(Point start, Point end, Port port) {
-        biasStart.setLocation(start);
-        biasEnd.setLocation(end);
-        arrowPosRight.setLocation(end);
-        arrowPosLeft.setLocation(end);
-        arrowPosBottom.setLocation(end);
-    }
-
     void updateArrow(Port.Side side) {
         double angle = switch (side) {
             case TOP -> (Math.PI / 2) * 3;
@@ -44,14 +36,8 @@ public class CompLink extends Link{
     }
 
     public void setStart(Port port) {
-        startPos.setLocation(port.getCenterPos());
-        biasStart.setLocation(startPos);
-        switch (port.getSide()) {
-            case TOP: biasStart.y -= biasLength; break;
-            case LEFT: biasStart.x -= biasLength; break;
-            case RIGHT: biasStart.x += biasLength; break;
-            case BOTTOM: biasStart.y += biasLength; break;
-        }
+        startPort = port;
+        updatePorts();
     }
 
     public void setEnd(Point point) {
@@ -66,27 +52,46 @@ public class CompLink extends Link{
     }
 
     public void setEnd(Port port) {
-        endPos.setLocation(port.getCenterPos());
-        updateArrow(port.getSide());
-        biasEnd.setLocation(arrowPosBottom);
-        switch (port.getSide()) {
-            case TOP: biasEnd.y -= biasLength; break;
-            case LEFT: biasEnd.x -= biasLength; break;
-            case RIGHT: biasEnd.x += biasLength; break;
-            case BOTTOM: biasEnd.y += biasLength; break;
+        endPort = port;
+        updatePorts();
+    }
+
+    @Override
+    public void updatePorts() {
+        if (startPort != null) {
+            startPos.setLocation(startPort.getCenterPos());
+            biasStart.setLocation(startPos);
+            switch (startPort.getSide()) {
+                case TOP: biasStart.y -= biasLength; break;
+                case LEFT: biasStart.x -= biasLength; break;
+                case RIGHT: biasStart.x += biasLength; break;
+                case BOTTOM: biasStart.y += biasLength; break;
+            }
         }
 
-        // 終點垂直逆向則先走水平，反之亦然
-        if (port.getSide() == Port.Side.TOP && startPos.y > endPos.y ||
-            port.getSide() == Port.Side.BOTTOM && startPos.y < endPos.y ) {
-            midPos1.setLocation((biasEnd.x + biasStart.x) / 2, biasStart.y);
-            midPos2.setLocation((biasEnd.x + biasStart.x) / 2, biasEnd.y);
-        } else {
-            midPos1.setLocation(biasStart.x, (biasEnd.y + biasStart.y) / 2);
-            midPos2.setLocation(biasEnd.x, (biasEnd.y + biasStart.y) / 2);
-        }
+        if (endPort != null) {
+            endPos.setLocation(endPort.getCenterPos());
+            updateArrow(endPort.getSide());
+            biasEnd.setLocation(arrowPosBottom);
+            switch (endPort.getSide()) {
+                case TOP: biasEnd.y -= biasLength; break;
+                case LEFT: biasEnd.x -= biasLength; break;
+                case RIGHT: biasEnd.x += biasLength; break;
+                case BOTTOM: biasEnd.y += biasLength; break;
+            }
 
-        // TODO: 起點路徑重疊待解決
+            // 終點垂直逆向則先走水平，反之亦然
+            if (endPort.getSide() == Port.Side.TOP && startPos.y > endPos.y ||
+                endPort.getSide() == Port.Side.BOTTOM && startPos.y < endPos.y ) {
+                midPos1.setLocation((biasEnd.x + biasStart.x) / 2, biasStart.y);
+                midPos2.setLocation((biasEnd.x + biasStart.x) / 2, biasEnd.y);
+            } else {
+                midPos1.setLocation(biasStart.x, (biasEnd.y + biasStart.y) / 2);
+                midPos2.setLocation(biasEnd.x, (biasEnd.y + biasStart.y) / 2);
+            }
+
+            // TODO: 起點路徑重疊待解決
+        }
     }
 
     @Override
