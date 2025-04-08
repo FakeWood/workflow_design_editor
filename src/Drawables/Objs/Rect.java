@@ -1,11 +1,8 @@
 package Drawables.Objs;
 
-import Drawables.ObjLabel;
-
 import java.awt.*;
 
-public class Rect extends Obj {
-    ObjLabel label = new ObjLabel();
+public class Rect extends ShapeObj {
 
     public Rect(int x, int y) {
         super(x, y);
@@ -23,16 +20,10 @@ public class Rect extends Obj {
     }
 
     @Override
-    public void move(int dx, int dy) {
-        super.move(dx, dy);
-        label.setCenterPos(pos.x + width / 2, pos.y + height / 2);
-    }
-
-    @Override
     public void draw(Graphics g) {
         g.setColor(Color.darkGray);
         g.fillRect(pos.x, pos.y, width, height);
-        label.draw(g);
+        g.drawRect(pos.x, pos.y, width, height);
         super.draw(g);
     }
 }

@@ -19,7 +19,7 @@ public class SelectMode extends Mode{
     public void mousePressed(MouseEvent e) {
         startPos.setLocation(e.getPoint());
         selectedObjs.clear();
-        Obj pressedObj = canvas.findObjHovered(e.getPoint(), false);
+        Obj pressedObj = canvas.findObjHovered(e.getPoint());
 
         // click on nothing, then draw select box
         if (pressedObj == null) {

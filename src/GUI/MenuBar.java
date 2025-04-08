@@ -2,6 +2,7 @@ package GUI;
 
 import Drawables.Objs.CompObj;
 import Drawables.Objs.Obj;
+import Drawables.Objs.ShapeObj;
 
 import javax.swing.*;
 import java.util.List;
@@ -22,12 +23,16 @@ public class MenuBar {
     JMenuItem labelItem = new JMenuItem("Label");
     JMenuItem groupItem = new JMenuItem("Group");
     JMenuItem unGroupItem = new JMenuItem("UnGroup");
+    LabelDialog labelDialog;
 
     public JMenuBar getMenuBar(){ return this.menuBar; }
 
-    public MenuBar() {
+    public MenuBar(JFrame frame) {
+        labelDialog = new LabelDialog(frame);
+
         groupItem.addActionListener(e -> group());
         unGroupItem.addActionListener(e -> unGroup());
+        labelItem.addActionListener(e -> label());
 
         fileMenu.add(newItem);
         fileMenu.add(openItem);
@@ -54,6 +59,18 @@ public class MenuBar {
             if (selectedObjs.get(i) instanceof CompObj) {
                 canvas.removeObject(selectedObjs.get(i));
                 break;
+            }
+        }
+    }
+
+    void label() {
+        List<Obj> selectedObjs = canvas.getSelectedObjs();
+        if (selectedObjs.size() == 1 && selectedObjs.get(0) instanceof ShapeObj){
+            labelDialog.setToLabel(((ShapeObj) selectedObjs.get(0)).getLabel());
+            labelDialog.setVisible(true);
+            if(labelDialog.isConfirmed()) {
+                ((ShapeObj) selectedObjs.get(0)).setLabel(labelDialog.getLabelInfo());
+                canvas.repaint();
             }
         }
     }

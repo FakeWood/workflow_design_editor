@@ -1,12 +1,8 @@
 package Drawables.Objs;
 
-import Drawables.ObjLabel;
-
 import java.awt.*;
 
-public class Oval extends Obj {
-    ObjLabel label = new ObjLabel();
-
+public class Oval extends ShapeObj {
     public Oval(int x, int y) {
         super(x, y);
         width = 100;
@@ -28,7 +24,7 @@ public class Oval extends Obj {
     public void draw(Graphics g) {
         g.setColor(Color.darkGray);
         g.fillOval(pos.x, pos.y, width, height);
-        label.draw(g);
+        g.drawOval(pos.x, pos.y, width, height);
         super.draw(g);
     }
 }

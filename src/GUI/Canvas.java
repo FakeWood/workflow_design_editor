@@ -7,8 +7,8 @@ import java.util.List;
 
 import Drawables.Drawable;
 import Drawables.Link.Link;
-import Drawables.Objs.CompObj;
 import Drawables.Objs.Obj;
+import Drawables.Objs.ShapeObj;
 import Modes.Mode;
 
 public class Canvas extends JPanel {
@@ -61,16 +61,21 @@ public class Canvas extends JPanel {
         repaint();
     }
 
-    public Obj findObjHovered(Point mousePos, boolean skipCompObjs) {
+    public Obj findObjHovered(Point mousePos) {
         for (int i = objs.size() - 1; i >= 0; i--) {
             Obj obj = objs.get(i);
-
-            if (skipCompObjs && obj instanceof CompObj) {
-                continue;
-            }
-
             if (obj.contain(mousePos)) {
                 return obj;
+            }
+        }
+        return null;
+    }
+
+    public ShapeObj findShapeObjHovered(Point mousePos) {
+        for (int i = objs.size() - 1; i >= 0; i--) {
+            Obj obj = objs.get(i);
+            if (obj instanceof ShapeObj && obj.contain(mousePos)) {
+                return (ShapeObj) obj;
             }
         }
         return null;

@@ -17,7 +17,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /* menu bar */
-        frame.setJMenuBar(new MenuBar().getMenuBar());
+        frame.setJMenuBar(new MenuBar(frame).getMenuBar());
         /* menu bar */
 
         /* tools Panel */

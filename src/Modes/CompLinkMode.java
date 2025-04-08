@@ -9,7 +9,7 @@ public class CompLinkMode extends LinkMode{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        startObj = canvas.findObjHovered(e.getPoint(), true);
+        startObj = canvas.findShapeObjHovered(e.getPoint());
         if (startObj == null) return;
 
         tmpLink = new CompLink();
@@ -22,7 +22,7 @@ public class CompLinkMode extends LinkMode{
     public void mouseDragged(MouseEvent e) {
         if(startObj == null || tmpLink == null) return;
 
-        endObj = canvas.findObjHovered(e.getPoint(), true);
+        endObj = canvas.findShapeObjHovered(e.getPoint());
         if (endObj == null || endObj == startObj) {
             tmpLink.setEnd(e.getPoint());
         } else {
@@ -36,7 +36,7 @@ public class CompLinkMode extends LinkMode{
     public void mouseReleased(MouseEvent e) {
         if (tmpLink == null) return;
 
-        endObj = canvas.findObjHovered(e.getPoint(), true);
+        endObj = canvas.findShapeObjHovered(e.getPoint());
         if(endObj == null|| endObj == startObj) {
             canvas.removeLink(tmpLink);
         }
