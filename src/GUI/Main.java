@@ -12,7 +12,7 @@ public class Main {
     private static void createAndShowGUI() {
 
         JFrame frame = new JFrame("Editor 3000");
-        frame.setBounds(500, 100, 800, 600);
+        frame.setBounds(500, 100, 800, 700);
         frame.setLayout(new BorderLayout(10,10));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
