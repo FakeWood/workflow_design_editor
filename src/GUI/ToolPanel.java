@@ -18,13 +18,14 @@ public class ToolPanel {
     private final Mode rectMode = new RectMode();
     private final Mode ovalMode = new OvalMode();
     private final Mode assLinkMode = new AssLinkMode();
+    private final Mode depdLinkMode = new DepdLinkMode();
     private final Mode genLinkMode = new GenLinkMode();
     private final Mode compLinkMode = new CompLinkMode();
 
     public JPanel getToolsPanel(){ return this.toolsPanel; }
 
     public ToolPanel() {
-        this.toolsPanel.setLayout(new GridLayout(6,1));
+        this.toolsPanel.setLayout(new GridLayout(7,1));
         this.toolsPanel.setBackground(Color.gray);
 
         JButton bTmp;
@@ -35,6 +36,10 @@ public class ToolPanel {
 
         bTmp = getButton("Ass","res/icon_association.png");
         bTmp.addActionListener(e->canvas.setMode(assLinkMode));
+        this.toolsPanel.add(bTmp);
+
+        bTmp = getButton("Depd","res/icon_dependency.png");
+        bTmp.addActionListener(e->canvas.setMode(depdLinkMode));
         this.toolsPanel.add(bTmp);
 
         bTmp = getButton("Gen", "res/icon_generalization.png");

@@ -4,7 +4,7 @@ import Drawables.Objs.Port;
 
 import java.awt.*;
 
-public class GenLink extends Link{
+public class GeneralizationLink extends Link{
     Point biasStart = new Point();
     Point biasEnd = new Point();
     int biasLength = 10;
@@ -16,7 +16,7 @@ public class GenLink extends Link{
     int arrowLength = 20;
     double arrowAngle = Math.PI / 6;
 
-    public GenLink() {}
+    public GeneralizationLink() {}
 
     void updateArrow(Port.Side side) {
         double angle = switch (side) {

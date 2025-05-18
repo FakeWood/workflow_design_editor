@@ -1,18 +1,18 @@
 package Modes;
 
-import Drawables.Link.GenLink;
+import Drawables.Link.GeneralizationLink;
 
 import java.awt.event.MouseEvent;
 
 public class GenLinkMode extends LinkMode{
-    GenLink tmpLink;
+    GeneralizationLink tmpLink;
 
     @Override
     public void mousePressed(MouseEvent e) {
         startObj = canvas.findShapeObjHovered(e.getPoint());
         if (startObj == null) return;
 
-        tmpLink = new GenLink();
+        tmpLink = new GeneralizationLink();
         tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
         tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
         canvas.addLink(tmpLink);

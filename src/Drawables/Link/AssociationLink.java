@@ -4,14 +4,14 @@ import Drawables.Objs.Port;
 
 import java.awt.*;
 
-public class AssLink extends Link{
+public class AssociationLink extends Link{
 
     Point arrowPos1 = new Point();
     Point arrowPos2 = new Point();
     int arrowLength = 20;
     double arrowAngle = Math.PI / 5;
 
-    public AssLink() {}
+    public AssociationLink() {}
 
     void updateArrow() {
         double angle = Math.atan2(startPos.y - endPos.y, startPos.x - endPos.x);

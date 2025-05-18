@@ -4,7 +4,7 @@ import Drawables.Objs.Port;
 
 import java.awt.*;
 
-public class CompLink extends Link{
+public class CompositionLink extends Link{
     Point biasStart = new Point();
     Point biasEnd = new Point();
     int biasLength = 10;
@@ -16,7 +16,7 @@ public class CompLink extends Link{
     int arrowLength = 10;
     double arrowAngle = Math.PI / 4;
 
-    public CompLink() {}
+    public CompositionLink() {}
 
     void updateArrow(Port.Side side) {
         double angle = switch (side) {

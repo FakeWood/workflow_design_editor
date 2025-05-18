@@ -1,18 +1,18 @@
 package Modes;
 
-import Drawables.Link.AssLink;
+import Drawables.Link.AssociationLink;
 
 import java.awt.event.MouseEvent;
 
 public class AssLinkMode extends LinkMode{
-    AssLink tmpLink;
+    AssociationLink tmpLink;
 
     @Override
     public void mousePressed(MouseEvent e) {
         startObj = canvas.findShapeObjHovered(e.getPoint());
         if (startObj == null) return;
 
-        tmpLink = new AssLink();
+        tmpLink = new AssociationLink();
         tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
         tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
         canvas.addLink(tmpLink);
@@ -37,7 +37,7 @@ public class AssLinkMode extends LinkMode{
         if (tmpLink == null) return;
 
         endObj = canvas.findShapeObjHovered(e.getPoint());
-        if(endObj == null|| endObj == startObj) {
+        if(endObj == null || endObj == startObj) {
             canvas.removeLink(tmpLink);
         }
         else {
