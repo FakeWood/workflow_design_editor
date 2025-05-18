@@ -31,14 +31,6 @@ public class CompObj extends Obj{
     }
 
     @Override
-    public void select() {
-        super.select();
-        for (Obj obj : objs) {
-            obj.select();
-        }
-    }
-
-    @Override
     public void move(int dx, int dy) {
         super.move(dx, dy);
         for (Obj obj : objs) {

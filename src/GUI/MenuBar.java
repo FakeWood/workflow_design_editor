@@ -55,11 +55,8 @@ public class MenuBar {
 
     void unGroup() {
         List<Obj> selectedObjs = canvas.getSelectedObjs();
-        for (int i = selectedObjs.size() - 1; i >= 0; i--) {
-            if (selectedObjs.get(i) instanceof CompObj) {
-                canvas.removeObject(selectedObjs.get(i));
-                break;
-            }
+        if (selectedObjs.size() == 1 && selectedObjs.get(0) instanceof CompObj) {
+            canvas.removeObject(selectedObjs.get(0));
         }
     }
 
