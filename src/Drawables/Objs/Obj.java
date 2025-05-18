@@ -9,11 +9,20 @@ abstract public class Obj implements Drawable {
     Point pos = new Point();
     int width = 50;
     int height = 50;
+    CompObj parent = null;  // need to know if an obj is in a group or not to avoid repeatedly move when dragging
 
     public Obj(){}
 
     public Obj(int x, int y){
         pos.setLocation(x,y);
+    }
+
+    public void setParent(CompObj compObj) {
+        this.parent = compObj;
+    }
+
+    public CompObj getParent() {
+        return parent;
     }
 
     public boolean contain(Point point) {

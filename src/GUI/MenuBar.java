@@ -47,7 +47,9 @@ public class MenuBar {
     }
 
     void group() {
-        CompObj compObj = new CompObj(canvas.getSelectedObjs());
+        List<Obj> selectedObjs = canvas.getSelectedObjs();
+        CompObj compObj = new CompObj(selectedObjs);
+        compObj.adoptChildren();
         canvas.addObject(compObj);
         compObj.select();
         canvas.repaint();
@@ -56,6 +58,7 @@ public class MenuBar {
     void unGroup() {
         List<Obj> selectedObjs = canvas.getSelectedObjs();
         if (selectedObjs.size() == 1 && selectedObjs.get(0) instanceof CompObj) {
+            ((CompObj) selectedObjs.get(0)).abandonChildren();
             canvas.removeObject(selectedObjs.get(0));
         }
     }

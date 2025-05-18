@@ -29,7 +29,7 @@ public class SelectMode extends Mode{
             range.setEndPos(startPos);
             canvas.addDrawable(range);
         }
-        // click on obj, the move
+        // click on obj, then move
         else {
             onObj = true;
             selectedObjs.add(pressedObj);
@@ -49,6 +49,7 @@ public class SelectMode extends Mode{
         // clicked on nothing
         } else {
             selectedObjs = canvas.findObjsCovered(startPos, endPos);
+            selectedObjs.removeIf(obj -> obj.getParent() != null);  // not select child
             canvas.selectObjs(selectedObjs);
             canvas.removeDrawable(range);
         }

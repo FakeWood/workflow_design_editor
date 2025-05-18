@@ -6,19 +6,31 @@ import java.util.List;
 
 public class CompObj extends Obj{
 
-    List<Obj> objs = new ArrayList<>();
+    List<Obj> children = new ArrayList<>();
 
     public CompObj(List<Obj> selectedObjs) {
-        objs.addAll(selectedObjs);
+        children.addAll(selectedObjs);
+    }
+
+    public void adoptChildren() {
+        for (Obj child : children) {
+            child.setParent(this);
+        }
+    }
+
+    public void abandonChildren() {
+        for (Obj child : children) {
+            child.setParent(null);
+        }
     }
 
     void updateBound() {
-        if(objs.isEmpty()) return;
-        Point objPos = objs.get(0).getPos();
-        Point objWH = objs.get(0).getDimension();
+        if(children.isEmpty()) return;
+        Point objPos = children.get(0).getPos();
+        Point objWH = children.get(0).getDimension();
         Point minPos = new Point(objPos);
         Point maxPos = new Point(minPos.x + objWH.x, minPos.y + objWH.y);
-        for (Obj obj : objs) {
+        for (Obj obj : children) {
             objPos.setLocation(obj.getPos());
             objWH.setLocation(obj.getDimension());
 
@@ -33,8 +45,8 @@ public class CompObj extends Obj{
     @Override
     public void move(int dx, int dy) {
         super.move(dx, dy);
-        for (Obj obj : objs) {
-            obj.move(dx, dy);
+        for (Obj child : children) {
+            child.move(dx, dy);
         }
     }
 
