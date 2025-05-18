@@ -1,6 +1,7 @@
 package Modes;
 
 import Drawables.Link.CompositionLink;
+import Drawables.Objs.Port;
 
 import java.awt.event.MouseEvent;
 
@@ -13,8 +14,9 @@ public class CompLinkMode extends LinkMode{
         if (startObj == null) return;
 
         tmpLink = new CompositionLink();
-        tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
-        tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
+        startPort = startObj.findNearestPort(e.getPoint());
+        tmpLink.setStart(startPort);
+        tmpLink.setEnd(startPort);
         canvas.addLink(tmpLink);
     }
 
@@ -41,7 +43,10 @@ public class CompLinkMode extends LinkMode{
             canvas.removeLink(tmpLink);
         }
         else {
-            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
+            Port endPort = endObj.findNearestPort(e.getPoint());
+            tmpLink.setEnd(endPort);
+            startPort.addLinkFrom(tmpLink);
+            endPort.addLinkTo(tmpLink);
         }
 
         tmpLink = null;

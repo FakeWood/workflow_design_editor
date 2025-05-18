@@ -1,9 +1,11 @@
 package Modes;
 
 import Drawables.Link.AssociationLink;
+import Drawables.Objs.Port;
 
 import java.awt.event.MouseEvent;
 
+// TODO: 改多型
 public class AssLinkMode extends LinkMode{
     AssociationLink tmpLink;
 
@@ -13,8 +15,9 @@ public class AssLinkMode extends LinkMode{
         if (startObj == null) return;
 
         tmpLink = new AssociationLink();
-        tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
-        tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
+        startPort = startObj.findNearestPort(e.getPoint());
+        tmpLink.setStart(startPort);
+        tmpLink.setEnd(startPort);
         canvas.addLink(tmpLink);
     }
 
@@ -41,7 +44,10 @@ public class AssLinkMode extends LinkMode{
             canvas.removeLink(tmpLink);
         }
         else {
-            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()).getCenterPos());
+            Port endPort = endObj.findNearestPort(e.getPoint());
+            tmpLink.setEnd(endPort);
+            startPort.addLinkFrom(tmpLink);
+            endPort.addLinkTo(tmpLink);
         }
 
         tmpLink = null;

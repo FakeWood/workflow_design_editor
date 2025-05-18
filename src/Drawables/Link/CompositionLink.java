@@ -96,7 +96,7 @@ public class CompositionLink extends Link{
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(selected? Color.BLUE : Color.BLACK);
         g.drawLine(startPos.x, startPos.y, biasStart.x, biasStart.y);
         g.drawLine(biasStart.x, biasStart.y, midPos1.x, midPos1.y);
         g.drawLine(midPos1.x, midPos1.y, midPos2.x, midPos2.y);

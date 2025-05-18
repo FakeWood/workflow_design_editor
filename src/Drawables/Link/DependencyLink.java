@@ -63,7 +63,7 @@ public class DependencyLink extends Link{
     }
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(selected? Color.BLUE : Color.BLACK);
         drawDashedLine(g);
         g.drawLine(endPos.x, endPos.y, arrowPos1.x, arrowPos1.y);
         g.drawLine(endPos.x, endPos.y, arrowPos2.x, arrowPos2.y);

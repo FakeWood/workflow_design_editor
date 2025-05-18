@@ -111,7 +111,7 @@ public class Canvas extends JPanel {
         repaint();
     }
 
-    public void updateLink() {
+    public void updateLinks() {
         for (Link link : links) {
             link.updatePorts();
         }

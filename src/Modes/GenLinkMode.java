@@ -1,6 +1,7 @@
 package Modes;
 
 import Drawables.Link.GeneralizationLink;
+import Drawables.Objs.Port;
 
 import java.awt.event.MouseEvent;
 
@@ -13,10 +14,11 @@ public class GenLinkMode extends LinkMode{
         if (startObj == null) return;
 
         tmpLink = new GeneralizationLink();
-        tmpLink.setStart(startObj.findNearestPort(e.getPoint()));
-        tmpLink.setEnd(startObj.findNearestPort(e.getPoint()));
+        startPort = startObj.findNearestPort(e.getPoint());
+        tmpLink.setStart(startPort);
+        tmpLink.setEnd(startPort);
         canvas.addLink(tmpLink);
-    }
+}
 
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -41,7 +43,10 @@ public class GenLinkMode extends LinkMode{
             canvas.removeLink(tmpLink);
         }
         else {
-            tmpLink.setEnd(endObj.findNearestPort(e.getPoint()));
+            Port endPort = endObj.findNearestPort(e.getPoint());
+            tmpLink.setEnd(endPort);
+            startPort.addLinkFrom(tmpLink);
+            endPort.addLinkTo(tmpLink);
         }
 
         tmpLink = null;

@@ -48,7 +48,7 @@ public class AssociationLink extends Link{
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(selected? Color.BLUE : Color.BLACK);
         g.drawLine(startPos.x, startPos.y, endPos.x, endPos.y);
         g.drawLine(endPos.x, endPos.y, arrowPos1.x, arrowPos1.y);
         g.drawLine(endPos.x, endPos.y, arrowPos2.x, arrowPos2.y);

@@ -1,6 +1,7 @@
 package Modes;
 
 import Drawables.Objs.Obj;
+import Drawables.Objs.ShapeObj;
 import Drawables.RectBound;
 
 import java.awt.*;
@@ -17,8 +18,13 @@ public class SelectMode extends Mode{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        startPos.setLocation(e.getPoint());
+        // deselect Port
+        if (onObj && selectedObjs.get(0) instanceof ShapeObj) {
+            ((ShapeObj) selectedObjs.get(0)).deselectPorts();
+        }
+        // deselect Objs
         selectedObjs.clear();
+        startPos.setLocation(e.getPoint());
         Obj pressedObj = canvas.findObjHovered(e.getPoint());
 
         // click on nothing, then draw select box
@@ -34,6 +40,10 @@ public class SelectMode extends Mode{
             onObj = true;
             selectedObjs.add(pressedObj);
             canvas.selectObjs(selectedObjs);
+            // select the port pressed
+            if(pressedObj instanceof ShapeObj) {
+                ((ShapeObj) pressedObj).selectPort(e.getPoint());
+            }
         }
     }
 
@@ -44,7 +54,7 @@ public class SelectMode extends Mode{
         // clicked on obj
         if(onObj){
             selectedObjs.get(0).move(e.getX() - startPos.x, e.getY() - startPos.y);
-            canvas.updateLink();
+            canvas.updateLinks();
             onObj = false;
         // clicked on nothing
         } else {

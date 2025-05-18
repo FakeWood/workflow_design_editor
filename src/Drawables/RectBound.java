@@ -16,6 +16,7 @@ public class RectBound implements Drawable {
 
     @Override
     public void draw(Graphics g) {
+        g.setColor(Color.BLACK);
         g.drawRect(startPos.x, startPos.y, endPos.x - startPos.x, endPos.y - startPos.y);
     }
 }

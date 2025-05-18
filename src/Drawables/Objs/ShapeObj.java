@@ -25,12 +25,46 @@ public class ShapeObj extends Obj{
         return nearestPos;
     }
 
+    // select the port clicked and deselect the others
+    public void selectPort(Point p) {
+        for (Port port : ports) {
+            if (port.contain(p)) {
+                port.select();
+            } else {
+                port.deselect();
+            }
+        }
+    }
+
+    public void deselectPorts() {
+        for (Port port : ports) {
+            port.deselect();
+        }
+    }
+
+    @Override
+    public void deselect() {
+        super.deselect();
+        deselectPorts();
+    }
+
     public ObjLabel.LabelInfo getLabel() {
         return label.getLabelInfo();
     }
 
     public void setLabel(ObjLabel.LabelInfo info) {
         label.setLabelInfo(info);
+    }
+
+    @Override
+    public boolean contain(Point point) {
+        for (Port port : ports) {
+            if(port.contain(point)) {
+                return true;
+            }
+        }
+
+        return super.contain(point);
     }
 
     @Override

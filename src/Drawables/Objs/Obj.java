@@ -6,7 +6,7 @@ import java.awt.*;
 
 abstract public class Obj implements Drawable {
     boolean selected = false;
-    Point pos = new Point();
+    Point pos = new Point();  // Top Left
     int width = 50;
     int height = 50;
     CompObj parent = null;  // need to know if an obj is in a group or not to avoid repeatedly move when dragging
