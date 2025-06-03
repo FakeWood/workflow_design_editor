@@ -113,7 +113,7 @@ public class Canvas extends JPanel {
 
     public void updateLinks() {
         for (Link link : links) {
-            link.updatePorts();
+            link.update();
         }
     }
 
