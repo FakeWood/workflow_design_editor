@@ -7,10 +7,10 @@ public class Oval extends ShapeObj {
         super(x, y);
         width = 100;
         height = 80;
-        ports.add(new Port(x + width/2, y, Port.Side.TOP));
-        ports.add(new Port(x, y + height/2, Port.Side.LEFT));
-        ports.add(new Port(x + width, y + height/2, Port.Side.RIGHT));
-        ports.add(new Port(x + width/2, y + height, Port.Side.BOTTOM));
+        ports.add(new Port(x + width/2, y));
+        ports.add(new Port(x, y + height/2));
+        ports.add(new Port(x + width, y + height/2));
+        ports.add(new Port(x + width/2, y + height));
         label.setCenterPos(pos.x + width / 2, pos.y + height / 2);
     }
 

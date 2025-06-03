@@ -8,19 +8,13 @@ import Drawables.Link.Link;
 
 
 public class Port extends Obj {
-    public enum Side {
-        TOP, LEFT, RIGHT, BOTTOM
-    }
-
     int width = 10;
     int height = 10;
-    Side side;
     List<Link> linkFromThis = new ArrayList<>();
     List<Link> linkToThis = new ArrayList<>();
 
-    public Port(int x, int y, Side side) {
+    public Port(int x, int y) {
         super(x, y);
-        this.side = side;
     }
 
     public void addLinkFrom(Link link) {
@@ -33,10 +27,6 @@ public class Port extends Obj {
 
     public Point getCenterPos() {
         return pos.getLocation();
-    }
-
-    public Side getSide() {
-        return side;
     }
 
     @Override
