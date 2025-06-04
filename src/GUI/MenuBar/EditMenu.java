@@ -43,6 +43,9 @@ public class EditMenu {
     private static void group(Canvas canvas) {
         List<Obj> selectedObjs = canvas.getSelectedObjs();
         selectedObjs.removeIf(obj -> obj.getParent() != null);  // Do not add to group if Obj is already in another group
+        if (selectedObjs.isEmpty()) {
+            return;
+        }
         CompObj compObj = new CompObj();
         compObj.adoptChildren(selectedObjs);
         canvas.addObject(compObj);
