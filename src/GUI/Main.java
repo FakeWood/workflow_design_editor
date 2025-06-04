@@ -22,7 +22,7 @@ public class Main {
         frame.setJMenuBar(MenuBar.getMenuBar(frame));
 
         // tools Panel
-        frame.add(new ToolPanel().getToolsPanel(), BorderLayout.WEST);
+        frame.add(ToolPanel.getPanel(), BorderLayout.WEST);
 
         // GUI.Canvas
         frame.add(Canvas.getInstance(), BorderLayout.CENTER);

@@ -3,13 +3,14 @@ package Drawables.Objs;
 import Drawables.Drawable;
 
 import java.awt.*;
+import java.util.List;
 
 abstract public class Obj implements Drawable {
-    boolean selected = false;
-    Point pos = new Point();  // Top Left
-    int width = 50;
-    int height = 50;
-    CompObj parent = null;  // need to know if an obj is in a group or not to avoid repeatedly move when dragging
+    protected boolean selected = false;
+    protected Point pos = new Point();  // Top Left
+    protected int width = 50;
+    protected int height = 50;
+    protected CompObj parent = null;  // need to know if an obj is in a group or not to avoid repeatedly move when dragging
 
     public Obj(){}
 
@@ -46,11 +47,14 @@ abstract public class Obj implements Drawable {
         return pos.getLocation();
     }
 
-    public Point getDimension() {
-        return new Point(width, height);
+    public Dimension getDimension() {
+        return new Dimension(width, height);
     }
 
     public void move(int dx, int dy) {
         pos.translate(dx, dy);
     }
+
+    public void adoptChildren(List<Obj> selectedObjs){}  // only used by CompObj but percolating up for polymorphism
+    public void abandonChildren(){}  // only used by CompObj but percolating up for polymorphism
 }

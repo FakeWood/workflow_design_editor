@@ -1,12 +1,14 @@
-package Drawables.Objs;
+package Drawables.Objs.ShapeObj;
 
 import Drawables.ObjLabel;
+import Drawables.Objs.Obj;
+import Drawables.Objs.Port;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShapeObj extends Obj{
+public class ShapeObj extends Obj {
     ObjLabel label = new ObjLabel();
     List<Port> ports = new ArrayList<>();
 
