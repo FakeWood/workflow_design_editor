@@ -9,7 +9,7 @@ import Drawables.Drawable;
 import Drawables.Link.Link;
 import Drawables.Obj.Obj;
 import Drawables.Obj.ShapeObj.ShapeObj;
-import Modes.Mode;
+import Mode.Mode;
 
 public class Canvas extends JPanel {
     private static Canvas instance = null;

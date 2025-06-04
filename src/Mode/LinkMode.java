@@ -1,4 +1,4 @@
-package Modes;
+package Mode;
 
 import Drawables.Link.Link;
 import Drawables.Obj.Port;

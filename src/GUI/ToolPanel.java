@@ -1,6 +1,6 @@
 package GUI;
 
-import Modes.*;
+import Mode.*;
 
 import javax.swing.*;
 import java.awt.*;

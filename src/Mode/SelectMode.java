@@ -1,4 +1,4 @@
-package Modes;
+package Mode;
 
 import Drawables.Obj.Obj;
 import Drawables.Obj.ShapeObj.ShapeObj;
