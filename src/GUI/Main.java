@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.MenuBar.MenuBar;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,17 +18,15 @@ public class Main {
         frame.setLayout(new BorderLayout(10,10));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        /* menu bar */
-        frame.setJMenuBar(new MenuBar(frame).getMenuBar());
-        /* menu bar */
+        // menu bar
+        frame.setJMenuBar(MenuBar.getMenuBar(frame));
 
-        /* tools Panel */
+        // tools Panel
         frame.add(new ToolPanel().getToolsPanel(), BorderLayout.WEST);
-        /* tools Panel */
 
-        /* GUI.Canvas */
+        // GUI.Canvas
         frame.add(Canvas.getInstance(), BorderLayout.CENTER);
-        /* GUI.Canvas */
+
 
         frame.setVisible(true); // 顯示視窗
     }
