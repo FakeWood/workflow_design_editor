@@ -1,8 +1,8 @@
-package Drawables.Objs.ShapeObj;
+package Drawables.Obj.ShapeObj;
 
 import Drawables.ObjLabel;
-import Drawables.Objs.Obj;
-import Drawables.Objs.Port;
+import Drawables.Obj.Obj;
+import Drawables.Obj.Port;
 
 import java.awt.*;
 import java.util.ArrayList;

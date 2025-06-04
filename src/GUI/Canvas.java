@@ -7,8 +7,8 @@ import java.util.List;
 
 import Drawables.Drawable;
 import Drawables.Link.Link;
-import Drawables.Objs.Obj;
-import Drawables.Objs.ShapeObj.ShapeObj;
+import Drawables.Obj.Obj;
+import Drawables.Obj.ShapeObj.ShapeObj;
 import Modes.Mode;
 
 public class Canvas extends JPanel {

@@ -1,4 +1,4 @@
-package Drawables.Objs;
+package Drawables.Obj;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class Port extends Obj {
     List<Link> linkToThis = new ArrayList<>();
 
     public Port(int x, int y) {
-        super(x, y);
+        super(x, y);  // pos 表示的不像 Obj 是指左上角，而是中心點
     }
 
     public void addLinkFrom(Link link) {
@@ -29,6 +29,7 @@ public class Port extends Obj {
         return pos.getLocation();
     }
 
+    // 因為 pos 表示的不像 Obj 是指左上角，而是中心點，所以算法不一樣
     @Override
     public boolean contain(Point point) {
         return (pos.x - width/2 <= point.x && point.x <= pos.x + width/2 &&

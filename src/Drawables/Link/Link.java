@@ -3,7 +3,7 @@ package Drawables.Link;
 import Drawables.Drawable;
 import Drawables.Link.Arrow.Arrow;
 import Drawables.Link.Line.Line;
-import Drawables.Objs.Port;
+import Drawables.Obj.Port;
 
 import java.awt.*;
 

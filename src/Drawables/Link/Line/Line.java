@@ -1,6 +1,6 @@
 package Drawables.Link.Line;
 
-import Drawables.Objs.Port;
+import Drawables.Obj.Port;
 
 import java.awt.*;
 

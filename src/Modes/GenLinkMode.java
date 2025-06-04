@@ -1,7 +1,7 @@
 package Modes;
 
 import Drawables.Link.GeneralizationLink;
-import Drawables.Objs.Port;
+import Drawables.Obj.Port;
 
 import java.awt.event.MouseEvent;
 

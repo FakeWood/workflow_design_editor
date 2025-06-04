@@ -1,4 +1,4 @@
-package Drawables.Objs;
+package Drawables.Obj;
 
 import Drawables.Drawable;
 

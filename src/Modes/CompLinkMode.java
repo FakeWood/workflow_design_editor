@@ -1,7 +1,7 @@
 package Modes;
 
 import Drawables.Link.CompositionLink;
-import Drawables.Objs.Port;
+import Drawables.Obj.Port;
 
 import java.awt.event.MouseEvent;
 

@@ -1,7 +1,7 @@
 package Modes;
 
-import Drawables.Objs.Obj;
-import Drawables.Objs.ShapeObj.ShapeObj;
+import Drawables.Obj.Obj;
+import Drawables.Obj.ShapeObj.ShapeObj;
 import Drawables.RectBound;
 
 import java.awt.*;

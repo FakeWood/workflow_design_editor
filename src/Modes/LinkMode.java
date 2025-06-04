@@ -1,7 +1,7 @@
 package Modes;
 
-import Drawables.Objs.Port;
-import Drawables.Objs.ShapeObj.ShapeObj;
+import Drawables.Obj.Port;
+import Drawables.Obj.ShapeObj.ShapeObj;
 
 public class LinkMode extends Mode{
     ShapeObj startObj = null;

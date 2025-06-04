@@ -1,4 +1,4 @@
-package Drawables.Objs;
+package Drawables.Obj;
 
 import java.awt.*;
 import java.util.ArrayList;

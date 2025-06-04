@@ -1,6 +1,6 @@
-package Drawables.Objs.ShapeObj;
+package Drawables.Obj.ShapeObj;
 
-import Drawables.Objs.Port;
+import Drawables.Obj.Port;
 
 import java.awt.*;
 

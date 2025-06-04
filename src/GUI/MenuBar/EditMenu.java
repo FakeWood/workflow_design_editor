@@ -1,8 +1,8 @@
 package GUI.MenuBar;
 
-import Drawables.Objs.CompObj;
-import Drawables.Objs.Obj;
-import Drawables.Objs.ShapeObj.ShapeObj;
+import Drawables.Obj.CompObj;
+import Drawables.Obj.Obj;
+import Drawables.Obj.ShapeObj.ShapeObj;
 import GUI.Canvas;
 import GUI.LabelDialog;
 
@@ -26,14 +26,14 @@ public class EditMenu {
     private static void createMenu(JFrame frame, Canvas canvas) {
         menu = new JMenu("Edit");
 
-        JMenuItem groupItem = new JMenuItem("Group");
-        groupItem.addActionListener(e -> group(canvas));
-        menu.add(groupItem);
-
         JMenuItem labelItem = new JMenuItem("Label");
         LabelDialog labelDialog = new LabelDialog(frame);
         labelItem.addActionListener(e -> label(canvas, labelDialog));
         menu.add(labelItem);
+
+        JMenuItem groupItem = new JMenuItem("Group");
+        groupItem.addActionListener(e -> group(canvas));
+        menu.add(groupItem);
 
         JMenuItem unGroupItem = new JMenuItem("UnGroup");
         unGroupItem.addActionListener(e -> unGroup(canvas));
