@@ -17,14 +17,6 @@ public class ToolPanel {
     private static JPanel toolsPanel;
     private static List<JButton> buttons;
 
-    private static Mode selectMode;
-    private static Mode rectMode;
-    private static Mode ovalMode;
-    private static Mode assLinkMode;
-    private static Mode depdLinkMode;
-    private static Mode genLinkMode;
-    private static Mode compLinkMode;
-
     public static JPanel getPanel() {
         if (toolsPanel == null) {
             createPanel();
@@ -36,45 +28,37 @@ public class ToolPanel {
         canvas = Canvas.getInstance();
         buttons = new ArrayList<>();
         toolsPanel = new JPanel();
-        toolsPanel.setLayout(new GridLayout(7,1));
+        toolsPanel.setLayout(new GridLayout(7, 1));
         toolsPanel.setBackground(Color.gray);
-
-        selectMode = new SelectMode();
-        rectMode = new RectMode();
-        ovalMode = new OvalMode();
-        assLinkMode = new AssLinkMode();
-        depdLinkMode = new DepdLinkMode();
-        genLinkMode = new GenLinkMode();
-        compLinkMode = new CompLinkMode();
 
         JButton bTmp;
 
         bTmp = getButton("Sel", "res/icon_select.png");
-        bTmp.addActionListener(e->canvas.setMode(selectMode));
+        bTmp.addActionListener(e -> canvas.setMode(new SelectMode()));
         toolsPanel.add(bTmp);
 
-        bTmp = getButton("Ass","res/icon_association.png");
-        bTmp.addActionListener(e->canvas.setMode(assLinkMode));
+        bTmp = getButton("Ass", "res/icon_association.png");
+        bTmp.addActionListener(e -> canvas.setMode(new LinkMode(LinkFactory.LinkType.ASSOCIATION)));
         toolsPanel.add(bTmp);
 
-        bTmp = getButton("Depd","res/icon_dependency.png");
-        bTmp.addActionListener(e->canvas.setMode(depdLinkMode));
+        bTmp = getButton("Depd", "res/icon_dependency.png");
+        bTmp.addActionListener(e -> canvas.setMode(new LinkMode(LinkFactory.LinkType.DEPENDENCY)));
         toolsPanel.add(bTmp);
 
         bTmp = getButton("Gen", "res/icon_generalization.png");
-        bTmp.addActionListener(e->canvas.setMode(genLinkMode));
+        bTmp.addActionListener(e -> canvas.setMode(new LinkMode(LinkFactory.LinkType.GENERALIZATION)));
         toolsPanel.add(bTmp);
 
         bTmp = getButton("Com", "res/icon_composition.png");
-        bTmp.addActionListener(e->canvas.setMode(compLinkMode));
+        bTmp.addActionListener(e -> canvas.setMode(new LinkMode(LinkFactory.LinkType.COMPOSITION)));
         toolsPanel.add(bTmp);
 
         bTmp = getButton("Rec", "res/icon_rect.png");
-        bTmp.addActionListener(e->canvas.setMode(rectMode));
+        bTmp.addActionListener(e -> canvas.setMode(new RectMode()));
         toolsPanel.add(bTmp);
 
         bTmp = getButton("Ova", "res/icon_oval.png");
-        bTmp.addActionListener(e->canvas.setMode(ovalMode));
+        bTmp.addActionListener(e -> canvas.setMode(new OvalMode()));
         toolsPanel.add(bTmp);
     }
 
@@ -82,8 +66,7 @@ public class ToolPanel {
         for (JButton btn : buttons) {
             if (btn == clickedBtn) {
                 btn.setBackground(Color.GRAY);
-            }
-            else {
+            } else {
                 btn.setBackground(Color.WHITE);
             }
         }
@@ -98,7 +81,7 @@ public class ToolPanel {
         button.setBackground(Color.WHITE);
         button.addActionListener(actionListener);
 
-        if(imgURL.isEmpty()) {
+        if (imgURL.isEmpty()) {
             return button;
         }
 
