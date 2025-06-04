@@ -1,5 +1,7 @@
 package Drawables.Obj;
 
+import GUI.Canvas;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,19 +14,21 @@ public class CompObj extends Obj {
     }
 
     @Override
-    public void adoptChildren(List<Obj> selectedObjs) {
+    public void group(List<Obj> selectedObjs) {
         children.addAll(selectedObjs);
         for (Obj child : children) {
             child.setParent(this);
         }
+        updateBound();
     }
 
     @Override
-    public void abandonChildren() {
+    public void unGroup() {
         for (Obj child : children) {
             child.setParent(null);
         }
         children.clear();
+        Canvas.getInstance().removeObject(this);
     }
 
     void updateBound() {
@@ -51,11 +55,11 @@ public class CompObj extends Obj {
         for (Obj child : children) {
             child.move(dx, dy);
         }
+        updateBound();
     }
 
     @Override
     public void draw(Graphics g) {  // Does not draw objs to maintain the layer order
-        updateBound();  //TODO: 需要的時候再 call
         if (this.selected) {
             g.setColor(Color.BLUE);
             g.drawRect(this.pos.x, this.pos.y, this.width, this.height);

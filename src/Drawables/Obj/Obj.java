@@ -55,6 +55,6 @@ abstract public class Obj implements Drawable {
         pos.translate(dx, dy);
     }
 
-    public void adoptChildren(List<Obj> selectedObjs){}  // only used by CompObj but percolating up for polymorphism
-    public void abandonChildren(){}  // only used by CompObj but percolating up for polymorphism
+    public void group(List<Obj> selectedObjs){}  // only used by CompObj but percolating up for polymorphism
+    public void unGroup(){}  // only used by CompObj but percolating up for polymorphism
 }

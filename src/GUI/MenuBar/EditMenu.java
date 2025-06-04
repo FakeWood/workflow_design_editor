@@ -47,7 +47,7 @@ public class EditMenu {
             return;
         }
         CompObj compObj = new CompObj();
-        compObj.adoptChildren(selectedObjs);
+        compObj.group(selectedObjs);
         canvas.addObject(compObj);
         compObj.select();
         canvas.repaint();
@@ -56,8 +56,7 @@ public class EditMenu {
     private static void unGroup(Canvas canvas) {
         List<Obj> selectedObjs = canvas.getSelectedObjs();
         if (selectedObjs.size() == 1) {
-            selectedObjs.get(0).abandonChildren();
-            canvas.removeObject(selectedObjs.get(0));
+            selectedObjs.get(0).unGroup();
         }
     }
 
