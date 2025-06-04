@@ -6,7 +6,6 @@ import java.util.List;
 
 import Drawables.Link.Link;
 
-
 public class Port extends Obj {
     int width = 10;
     int height = 10;
